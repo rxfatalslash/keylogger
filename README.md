@@ -11,7 +11,9 @@ Accede a los ajustes de tu cuenta de Gmail y asegurate de que la verificación e
 <img src="assets/doble_factor.png" alt="Doble factor" width="400px">
 <br>
 Para poder usar la contraseña, accede a <a href="https://myacount.google.com/apppasswords">Contraseñas de aplicaciones</a>
+<br>
 <img src="assets/app_passwords.png" alt="Contraseñas de aplicaciones" width="400px">
+<br>
 Copia la clave generada en el valor de la variable password del script de envío
 <br>
 Cambia el valor de "RUTA" en ambos scripts por la ruta que quieras, es recomendable usar la ruta "C:/Users/{user}/.../keys" donde {user} es el usuario del sistema, para evitar errores en la creación de la carpeta oculta por la falta de permisos
