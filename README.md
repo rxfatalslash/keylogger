@@ -8,7 +8,7 @@ En el remitente escribimos el correo desde el que queremos que se envíen los co
 Accede a los ajustes de tu cuenta de Gmail y asegurate de que la verificación en dos pasos está activada
 <img src="assets/seguridad.png" alt="Seguridad" width="400px">
 <br><br>
-<img src="assets/doble_factor.png" alt="Doble factor" width="400px">
+<img src="assets/doble_factor.png" alt="Doble factor" width="600px">
 <br>
 Para poder usar la contraseña, accede a <a href="https://myacount.google.com/apppasswords">Contraseñas de aplicaciones</a>
 <br>
