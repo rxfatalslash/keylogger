@@ -4,10 +4,10 @@ Al ejecutar el script se graban las teclas pulsadas en un archivo llamado keys q
 En el remitente escribimos el correo desde el que queremos que se envíen los correos
 <br>
 <img src="assets/ejemplos_email.png" alt="Ejemplos email" width="400px">
-<br>
+<br><br>
 Accede a los ajustes de tu cuenta de Gmail y asegurate de que la verificación en dos pasos está activada
 <img src="assets/seguridad.png" alt="Seguridad" width="400px">
-<br>
+<br><br>
 <img src="assets/doble_factor.png" alt="Doble factor" width="400px">
 <br>
 Para poder usar la contraseña, accede a <a href="https://myacount.google.com/apppasswords">Contraseñas de aplicaciones</a>
