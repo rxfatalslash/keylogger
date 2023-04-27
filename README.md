@@ -26,6 +26,7 @@ Puedes cambiar la frecuencia de envío en **_"time.sleep(INTERVALO_EN_SEGUNDOS)"
 ## Ejecución
 Ejecuta los script con los comandos en terminales distintas
 ```
-python keylogger.py python send.py
+python keylogger.py
+python send.py
 ```
 En futuras versiones se corregirá para que las funciones se ejecuten desde el mismo script
